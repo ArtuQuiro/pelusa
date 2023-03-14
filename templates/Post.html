@@ -1,0 +1,50 @@
+{% extends "layouts/main.html" %}
+
+{% block content %}
+{% if post is None %}
+<h1>Nuevo Post</h1>
+{% else %}
+<h1>Editar Post</h1>
+{% endif %}
+<form method="POST" action="">
+    {% csrf_token %}
+
+    {% if post is not None %}
+        <input type="hidden" value="{{post.id}}" name="id"/>
+    {% endif %}
+
+    <input type="hidden" name="usuario" value="{{ request.user.id }}"/>
+    <div class="form-group my-3">
+        <label>Título</label>
+        <input type="text" class="form-control" name="titulo" placeholder="Título"
+        {% if post is not None %}
+            value="{{post.titulo}}"
+        {% endif %}
+        />
+    </div>
+    <div class="form-group my-3">
+        <label>Texto</label>
+        <textarea class="form-control" name="contenido">{% if post is not None %}{{post.contenido}}{% endif %}</textarea>
+    </div>
+    <div>
+        <label>Tema:</label>
+        <select name="tema">
+            {% for t in temas %}
+            <option value="{{t.id}}" {% if post is not None and post.tema|safe == t.titulo|safe %}selected{% endif %} >{{t.titulo}}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <button class="btn btn-primary" type="submit">
+        {% if post is None %}
+        Crear Post
+        {% else %}
+        Editar Post
+        {% endif %}</button>
+        {% if post is not None %}
+        <a href="/post/{{post.id}}/eliminar/"><button type="button" class="btn btn-danger">Eliminar Post</button></a>
+        {% endif %}
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "layouts/main.html" %}
+
+{% block content %}
+<img src="/static/images/banner.png" height="200px"/>
+
+<h2>Bienvenido a PELUSA</h2>
+<h3>Elige una categoría</h3>
+
+{% for c in categorias %}
+
+<h3><a href="/{{c.nombre}}">{{c.nombre}}</a></h3>
+
+{% endfor %}
+
+{% endblock %}

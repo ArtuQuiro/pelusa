@@ -1,0 +1,72 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="{% static 'styles/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/estilos.css' %}">
+    <title>Pelusa</title>
+</head>
+
+<body>
+    <header>
+        <!-- Fixed navbar-->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="/">PELUSA</a>
+
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Inicio</a>
+                    </li>
+
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/post">Nuevo Post</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Cerrar sesión</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">{{request.user.username}}</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Iniciar sesión</a>
+                    </li>
+                    {% endif %}
+
+                </ul>
+
+            </div>
+        </nav>
+
+    </header>
+
+    <main role="main" class="container my-5 tra" style="background-color: rgba(255, 255, 255, 0.85)">
+        <div class="py-4">
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{message.tags}}" role="alert">{{message}}</div>
+                {% endfor %}
+            {% endif %}
+            {% block content %}
+
+            {% endblock %}
+        </div>
+    </main>
+
+    <footer class="footer bg-light p-2 fixed-bottom">
+        <div class="container">
+            <span class="text-muted">Pelusa - El mejor foro del mundo</span> 
+        </div>
+    </footer>
+<!--
+(\(\
+(=';')
+(,(")(")
+Conejín el
+Aventurero
+-->
+</body>
+</html>

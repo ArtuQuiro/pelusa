@@ -1,0 +1,25 @@
+{% extends "layouts/main.html" %}
+
+{% block content %}
+<h1>Editar Comentario</h1>
+<form method="POST" action="">
+    {% csrf_token %}
+
+    {% if comentario is not None %}
+    <input type="hidden" value="{{comentario.id}}" name="id"/>
+    <input type="hidden" value="{{comentario.post.id}}" name="post"/>
+    {% endif %}
+
+    <input type="hidden" name="usuario" value="{{ request.user.id }}"/>
+    <div class="form-group my-3">
+        <label>Texto</label>
+        <textarea class="form-control" name="contenido">{% if comentario is not None %}{{comentario.contenido}}{% endif %}</textarea>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Editar Comentario</button>
+    {% if comentario is not None %}
+    <a href="/comentario/{{comentario.id}}/eliminar/"><button type="button" class="btn btn-danger">Eliminar Comentario</button></a>
+    {% endif %}
+</form>
+
+{% endblock %}

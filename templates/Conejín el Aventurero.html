@@ -1,0 +1,35 @@
+{% extends "layouts/main.html" %}
+
+{% block content %}
+<h1>Conejín el Aventurero</h1>
+{% for p in posts %}
+
+<hr/>
+<h3>{{p.titulo}}</h3>
+<p>{{p.contenido}}</p>
+<p>Escrito por: {{ p.usuario }}
+{% if request.user.is_authenticated and request.user == p.usuario %}
+    <a href="/post/{{p.id}}">Editar</a>
+{% endif %}</p>
+
+{% for c in p.comentario_set.all %}
+    <br/>{{c.usuario}} comentó: {{c.contenido}}
+    {% if request.user.is_authenticated and request.user == c.usuario %}
+        <a href="/edit_comment/{{c.id}}">Editar</a>
+    {% endif %}
+{% endfor %}
+
+{% if request.user.is_authenticated %}
+    <form method="post" action="/comment/">
+        {% csrf_token %}
+        <input type="hidden" value="{{p.id}}" name="post"/>
+        <div class="form-group my-3">
+            <label>Comentar</label>
+            <textarea class="form-control" name="contenido" placeholder="Escribe un comentario"></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">Comentar</button>
+    </form>
+{% endif %}
+{% endfor %}
+<br/><img src="/static/images/Conejin.jpg"/>
+{% endblock %}

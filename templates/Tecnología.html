@@ -1,0 +1,12 @@
+{% extends "layouts/main.html" %}
+
+{% block content %}
+
+<h1>Tecnología</h1>
+{% for t in temas %}
+
+<h2><a href="{{t.titulo}}">{{t.titulo}}</a></h2>
+<p>{{t.contenido}}</p>
+
+{% endfor %}
+{% endblock %}

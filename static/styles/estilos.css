@@ -1,0 +1,5 @@
+@font-face { font-family: CelestiaRedux; src: url('/static/font/CelestiaMediumRedux_alt1.55.ttf')  format('truetype'); }
+body {
+    background-image: url("/static/images/fondo.png");
+    font-family: "CelestiaRedux";
+  }
