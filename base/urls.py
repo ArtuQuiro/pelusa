@@ -20,4 +20,5 @@ urlpatterns = [
     path('edit_comment/<int:id>',views.edit_comment),
     path('post/<int:id>/eliminar/', views.borrar_post),
     path('comentario/<int:id>/eliminar/', views.borrar_comentario),
+    path('toggle_dark_mode/', views.toggle_dark_mode, name='toggle_dark_mode')
 ]

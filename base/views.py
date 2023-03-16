@@ -149,3 +149,9 @@ def lenguajes(request):
 def conejin(request):
     posts = Post.objects.filter(tema='5').order_by('-fecha_creacion')
     return render(request, 'Conejín el Aventurero.html', {'posts':posts})
+
+def toggle_dark_mode(request):
+    if 'dark_mode' not in request.session:
+        request.session['dark_mode'] = False
+    request.session['dark_mode'] = not request.session['dark_mode']
+    return redirect('/')

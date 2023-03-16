@@ -3,3 +3,6 @@ body {
     background-image: url("/static/images/fondo.png");
     font-family: "CelestiaRedux";
   }
+body.dark-mode {
+    background-image: url("/static/images/fondo_dark.png");
+  }
