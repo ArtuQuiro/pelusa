@@ -1,8 +1,10 @@
 @font-face { font-family: CelestiaRedux; src: url('/static/font/CelestiaMediumRedux_alt1.55.ttf')  format('truetype'); }
+@font-face { font-family: UnicornCouple; src: url('/static/font/Unicorn_Couple.ttf')  format('truetype'); }
 body {
     background-image: url("/static/images/fondo.png");
     font-family: "CelestiaRedux";
   }
 body.dark-mode {
     background-image: url("/static/images/fondo_dark.png");
+    font-family: "UnicornCouple";
   }
